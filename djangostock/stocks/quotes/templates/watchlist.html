@@ -1,0 +1,42 @@
+{% extends 'basepage.html' %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>
+
+            Stock Watchlist
+
+        </title>
+
+    </head>
+
+    <body>
+
+        <form action="{% url 'watchlist' %}" class="form-inline my-2 my-lg-0" method="POST">
+                {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="Ticker Symbol Here" aria-label="Search" name="ticker">
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Add Stock To Watchlist</button>
+        </form>
+        <br/>
+        <br/>
+        <br/>
+ 
+        
+{% for item in ticker %}
+    {{ item }} - <a href="{% url 'delete' item.id %}">Delete Stock </a><br/>
+{% endfor %}
+
+    </body>
+
+</html>
+
+
+{% endblock %}
+

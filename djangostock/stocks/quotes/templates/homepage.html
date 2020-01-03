@@ -1,0 +1,65 @@
+{% extends 'basepage.html' %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <link rel="icon" href="http://files.gamebanana.com/img/ico/sprays/550f7e584c470.png" type="image/x-icon"/>
+
+        <title>
+
+            Stock Market App
+
+        </title>
+
+    </head>
+
+    <body>
+
+        <h1>HOMEPAGE INFO</h1>
+        <br />
+        <br />
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+<br/>
+<br/>
+    
+<!--Here is a stimple if statement in a html file, but done through python using -->
+
+    </body>
+
+</html>
+
+{% if api %}
+
+    {% if api == "Error..." %}
+        <h2>There was a problem with your ticker symbol, please try again..</h2>
+    {% else %}
+
+        <h2>{{ api.companyName }}</h2><br/>
+        Price: ${{ api.latestPrice }}<br/>
+        Previous Close: ${{ api.previousClose }}<br/>
+        Market Cap: ${{ api.marketCap }}<br/>
+        Year To Date Change: {{ api.ytdChange }}%<br/>
+        52 Week high: ${{ api.week52High }}<br/>
+        52 Week low: ${{ api.week52Low }}<br/>
+        <br/>
+        <br/>
+        <br/>
+
+<!--
+        {% for key, value in api.items %}
+            {{ key }}: {{ value }}<br/>
+        {% endfor %}
+-->
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}
